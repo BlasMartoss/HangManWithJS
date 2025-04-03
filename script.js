@@ -1,4 +1,3 @@
-
 let guessedLetters = [];
 let incorrectLetters = [];
 let failedAttemps = 0;
@@ -12,24 +11,23 @@ const imageNames = [
     "images/imagen7.png"
 ];
 const words = [
-    "ABANDONO", "ABERRADO", "ABOGACÍA", "ABONADOR", "ABRUMADO", "ABSORBER", "ABUELITO", "ACCEDIDO", "ACEITUNA", "ACELERAR",
-    "ACEPTADO", "ACERTADO", "ACLARADO", "ACOGIDOR", "ACOMETER", "ACONTECE", "ACORDADO", "ACTUANTE", "ADAPTADO", "ADEUDADO",
-    "ADHERIDO", "ADJETIVO", "ADJUDICA", "ADMITIDO", "ADORNADO", "ADQUIRIR", "ADULADOR", "ADVERTIR", "AEROPUER", "AFECTADO",
-    "AFILIADO", "AFIRMARA", "AGARRADO", "AGENCIA", "AGITADOR", "AGRADADO", "AGRUPADO", "AGUARDAR", "AHORCADO", "AJUSTADO",
-    "ALARGADO", "ALCANZAR", "ALEGRADO", "ALFABETO", "ALIMENTA", "ALIVIADO", "ALMOHADA", "ALQUILER", "ALTERADO", "ALUMBRAR",
-    "AMARRADO", "AMENAZAR", "AMISTOSO", "AMPLIADO", "ANALISTA", "ANCIANOS", "ANDAMIOS", "ANEXIONA", "ANIMALES", "ANOTADOR",
-    "ANUNCIAR", "APAGADOR", "APARECER", "APARTADO", "APELANTE", "APETECER", "APLAZADO", "APLICADO", "APOYANDO", "APRENDIZ",
-    "APRESURA", "APROBADO", "APUNTADO", "AQUEJAR", "ARBITRIO", "ARGUMENT", "ARMONICO", "ARRAIGAR", "ARRASTRA", "ARREGLAR",
-    "ARREPENT", "ARRODILL", "ARTICULO", "ASALTADO", "ASCENDER", "ASEGURAR", "ASIGNADO", "ASISTIDO", "ASOCIADO", "ASOMBRAR",
-    "ASPECTOS", "ASPIRADO", "ATAJANDO", "ATENTADO", "ATERRIZA", "ATRACTIV", "ATROPELL", "AUDITORI", "AUMENTAR", "AUTORIZA",
-    "AVANZADO", "AVENTURA", "AVERIGUA", "AYUDANTE", "AZAFATAS", "AZOTANDO"
+    "SOL", "LUNA", "CASA", "ARBOL", "LIBRO", "COMPUTADORA", "ELEFANTE", "MARIPOSA", "UNIVERSIDAD", "ESPECTACULAR",
+    "PROGRAMA", "TECLADO", "RATON", "IMPRESORA", "PANTALLA", "AURICULARES", "MICROFONO", "ALTAVOCES", "PROCESADOR", "MEMORIA",
+    "DISCO", "ARCHIVO", "CARPETA", "USUARIO", "CONTRASEÑA", "NAVEGADOR", "INTERNET", "PAGINA", "ENLACE", "VIDEO",
+    "IMAGEN", "TEXTO", "SONIDO", "JUEGO", "APLICACION", "SISTEMA", "RED", "SERVIDOR", "CLIENTE", "CORREO",
+    "MENSAJE", "LLAMADA", "MUSICA", "PELICULA", "REVISTA", "PERIODICO", "CANCION", "POEMA", "CUENTO", "NOVELA",
+    "TEATRO", "CINE", "TELEVISION", "RADIO", "FOTOGRAFIA", "PINTURA", "ESCULTURA", "ARQUITECTURA", "DANZA", "CIRCO",
+    "MAGIA", "DEPORTE", "JUGADOR", "EQUIPO", "PARTIDO", "GOL", "CANASTA", "CARRERA", "PUNTO", "TIEMPO",
+    "REGLA", "ARBITRO", "ESTADIO", "GIMNASIO", "PISCINA", "MONTAÑA", "PLAYA", "BOSQUE", "RIO", "LAGO",
+    "CIUDAD", "PUEBLO", "PAIS", "CONTINENTE", "PLANETA", "ESTRELLA", "GALAXIA", "UNIVERSO", "TIERRA", "AGUA",
+    "FUEGO", "AIRE", "AMOR", "ODIO", "PAZ", "GUERRA", "VIDA", "MUERTE", "FELICIDAD", "TRISTEZA",
+    "ALEGRIA", "MIEDO", "ESPERANZA", "SUEÑO", "REALIDAD", "FANTASIA", "CIENCIA", "TECNOLOGIA", "HISTORIA", "FILOSOFIA"
 ];
 
 let word = getRandomWord();
 function getRandomWord() {
     return words[Math.floor(Math.random() * words.length)];
 }
-
 
 console.log(word);
 
@@ -68,7 +66,7 @@ function checkWin() {
         gameDiv.style.display = "none";
         winDiv.classList.remove("d-none");
         winDiv.classList.add("d-flex");
-        imageElement.src = "images/imagenGanador.png"; 
+        imageElement.src = "images/imagenGanador.png";
 
         return true;
     }
@@ -105,10 +103,24 @@ function updateDisplay(letter) {
     }
 }
 
-
 const restartButtons = document.querySelectorAll(".restartButton");
 restartButtons.forEach(button => {
     button.addEventListener("click", function() {
         location.reload();
     });
 });
+
+function generateLetterDivs() {
+    const letterContainer = document.getElementById("letterContainer");
+    letterContainer.innerHTML = ""; 
+
+    for (let i = 0; i < word.length; i++) {
+        const letterDiv = document.createElement("div");
+        letterDiv.id = `letra${i + 1}`;
+        letterDiv.className = "col-auto letter-space border-bottom border-dark";
+        letterContainer.appendChild(letterDiv);
+    }
+}
+
+
+generateLetterDivs();
